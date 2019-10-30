@@ -1,6 +1,7 @@
 package tech.stacka.bizmaster
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,10 @@ class HomeFragment : Fragment() {
         }
         addLayoutParent.setOnClickListener {
             add_layout.visibility=View.GONE
+        }
+        btn_add_expense.setOnClickListener {
+            val clickIntent=Intent(activity,AddExpenseActivity::class.java)
+            startActivity(clickIntent)
         }
     }
 

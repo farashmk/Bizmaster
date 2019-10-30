@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
                         addfragement(fragment)
                     }
                     R.id.menu_stats -> {
+                        val fragment= statiticsFragment()
+                        addfragement(fragment)
+                    }
+                    R.id.menu_profile ->{
+                        val fragment= ProfileFragment()
+                        addfragement(fragment)
                     }
                 }
             }
