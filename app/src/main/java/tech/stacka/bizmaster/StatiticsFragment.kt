@@ -10,7 +10,7 @@ import android.view.ViewGroup
 /**
  * A simple [Fragment] subclass.
  */
-class statiticsFragment : Fragment() {
+class StatiticsFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

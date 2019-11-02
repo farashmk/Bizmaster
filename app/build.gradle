@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.fxn769:bubbletabbar:1.0.3'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
 }

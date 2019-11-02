@@ -12,60 +12,68 @@
         android:id="@+id/expense_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="32dp"
         android:text="15/10/2019"
-        android:textSize="25sp"
         android:textColor="#000000"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="47dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginEnd="57dp"
+        android:id="@+id/etExpenseAmount"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bg_whitecard"
         android:drawableLeft="@drawable/ic_rupee_indian"
         android:ems="10"
+        android:gravity="center"
+        android:hint="Enter the Amount"
         android:inputType="number"
+        android:paddingLeft="20dp"
+        android:textColor="#FF2C2C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expense_date" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="47dp"
+        android:id="@+id/etExpenseNotes"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bg_whitecard"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="55dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Notes"
-        android:gravity="center"
         android:drawableLeft="@drawable/ic_edit"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Notes"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/etExpenseAmount" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="80dp"
+        android:id="@+id/cardFood"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView3"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardCar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" >
+        app:layout_constraintTop_toBottomOf="@+id/etExpenseNotes">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_height="match_parent">
 
             <ImageView
@@ -75,10 +83,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="9dp"
-                android:src="@drawable/ic_diet"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_diet" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -88,27 +93,28 @@
                 android:layout_marginEnd="11dp"
                 android:gravity="center"
                 android:text="Food"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textColor="#000000"
+                android:textSize="10sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="80dp"
+        android:id="@+id/cardCar"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView5"
-        app:layout_constraintStart_toEndOf="@+id/cardView4"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" >
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardGift"
+        app:layout_constraintStart_toEndOf="@+id/cardFood"
+        app:layout_constraintTop_toBottomOf="@+id/etExpenseNotes">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -117,10 +123,7 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="2dp"
-                android:src="@drawable/ic_taxi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_taxi" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -129,23 +132,23 @@
                 android:layout_marginStart="9dp"
                 android:layout_marginEnd="9dp"
                 android:text="car"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                android:textColor="#000000"
+                android:textSize="10sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5"
-        android:layout_width="80dp"
+        android:id="@+id/cardGift"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView3"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" >
+        app:layout_constraintStart_toEndOf="@+id/cardCar"
+        app:layout_constraintTop_toBottomOf="@+id/etExpenseNotes">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -170,6 +173,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="11dp"
                 android:text="gift"
+                android:textColor="#000000"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -177,19 +182,22 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView6"
-        android:layout_width="80dp"
+        android:id="@+id/cardCommunication"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView7"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/caradHealth"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4" >
+        app:layout_constraintTop_toBottomOf="@+id/cardFood">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView5"
@@ -197,11 +205,7 @@
                 android:layout_height="56dp"
                 android:layout_marginStart="13dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_phone_call"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_phone_call" />
 
             <TextView
                 android:id="@+id/textView21"
@@ -210,40 +214,37 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="11dp"
                 android:text="communication"
-                android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.128"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:textColor="#000000"
+                android:textSize="10sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView7"
-        android:layout_width="80dp"
+        android:id="@+id/caradHealth"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView10"
-        app:layout_constraintStart_toEndOf="@+id/cardView6"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3" >
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardEntertaintment"
+        app:layout_constraintStart_toEndOf="@+id/cardCommunication"
+        app:layout_constraintTop_toBottomOf="@+id/cardCar">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView6"
-                android:layout_width="56dp"
-                android:layout_height="57dp"
+                android:layout_width="49dp"
+                android:layout_height="44dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="11dp"
-                android:src="@drawable/ic_first_aid_kit"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_first_aid_kit" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -252,68 +253,71 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="9dp"
-                android:text="TextView"
+                android:text="Health"
+                android:textColor="#000000"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView6" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView10"
-        android:layout_width="80dp"
+        android:id="@+id/cardEntertaintment"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView7"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5" >
+        app:layout_constraintStart_toEndOf="@+id/caradHealth"
+        app:layout_constraintTop_toBottomOf="@+id/cardGift">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="51dp"
-                android:layout_height="51dp"
+                android:layout_width="46dp"
+                android:layout_height="43dp"
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="10dp"
-                android:src="@drawable/ic_confetti"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_confetti" />
 
             <TextView
                 android:id="@+id/textView23"
-                android:layout_width="62dp"
-                android:layout_height="31dp"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="9dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="Entertainment"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView8"
-        android:layout_width="80dp"
+        android:id="@+id/cardEatout"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView9"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toStartOf="@+id/cardHome"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView6" >
+        app:layout_constraintTop_toBottomOf="@+id/cardCommunication">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -335,27 +339,32 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="11dp"
-                android:text="TextView"
+                android:text="Eating out"
+                android:textColor="#000000"
+                android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView9"
-        android:layout_width="80dp"
+        android:id="@+id/cardHome"
+        android:layout_width="0dp"
         android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="28dp"
-        app:layout_constraintEnd_toStartOf="@+id/cardView11"
-        app:layout_constraintStart_toEndOf="@+id/cardView8"
-        app:layout_constraintTop_toBottomOf="@+id/cardView7" >
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:clickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardEatout"
+        app:layout_constraintTop_toBottomOf="@+id/caradHealth">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView9"
@@ -364,41 +373,34 @@
                 android:layout_marginStart="11dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="9dp"
-                android:src="@drawable/ic_home"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_home"/>
 
             <TextView
                 android:id="@+id/textView25"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
-                app:layout_constraintEnd_toStartOf="@+id/imageView9"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:text="Home"
+                android:textColor="#000000"
+                android:textSize="10sp" />
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView11"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="38dp"
-        android:layout_marginEnd="45dp"
+    <Button
+        android:id="@+id/add_expense_btn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/add_expense_btn"
+        android:text="ADD EXPENSE"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cardView9"
-        app:layout_constraintTop_toBottomOf="@+id/cardView10" >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
