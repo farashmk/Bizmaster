@@ -23,13 +23,14 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/btn_add"
             android:text="+"
+            android:gravity="center"
             android:textColor="#ffffff"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_home_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -47,8 +48,8 @@
             android:textColor="#2699FB"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/tv_home_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_home_name" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"

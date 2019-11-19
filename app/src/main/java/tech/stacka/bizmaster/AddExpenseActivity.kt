@@ -44,38 +44,120 @@ class AddExpenseActivity : AppCompatActivity() {
                 ).show()
                 else -> {
                     val sqliteHelper = SqliteHelper(this)
-                    sqliteHelper.addExpense(amount.toFloat(), notes, selectedCategory!!)
+                    if (sqliteHelper.addExpense(amount.toFloat(), notes, selectedCategory!!) > 0) {
+                        Snackbar.make(view, "Expence added", Snackbar.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Snackbar.make(view, "Expence adding failed", Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
 
         cardFood.setOnClickListener {
             selectedCategory = "food"
+            cardFood.background=getDrawable(R.drawable.card_selection)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
+
 
         }
 
         cardCar.setOnClickListener {
             selectedCategory = "car"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_selection)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
         }
 
         cardGift.setOnClickListener {
             selectedCategory = "gift"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_selection)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
         }
 
         cardCommunication.setOnClickListener {
             selectedCategory = "communication"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_selection)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+        }
+        cardHealth.setOnClickListener {
+            selectedCategory="Health"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_selection)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+
         }
 
         cardEntertaintment.setOnClickListener {
             selectedCategory = "entertaintment"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_selection)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
         }
 
         cardEatout.setOnClickListener {
             selectedCategory = "Eatout"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_selection)
+            cardHome.background=getDrawable(R.drawable.card_unselected)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
         }
 
         cardHome.setOnClickListener {
             selectedCategory = "home"
+            cardFood.background=getDrawable(R.drawable.card_unselected)
+            cardCar.background=getDrawable(R.drawable.card_unselected)
+            cardGift.background=getDrawable(R.drawable.card_unselected)
+            cardCommunication.background=getDrawable(R.drawable.card_unselected)
+            cardEntertaintment.background=getDrawable(R.drawable.card_unselected)
+            cardEatout.background=getDrawable(R.drawable.card_unselected)
+            cardHome.background=getDrawable(R.drawable.card_selection)
+            cardHealth.background=getDrawable(R.drawable.card_unselected)
+
         }
+
+
     }
 }
