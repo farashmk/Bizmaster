@@ -1,5 +1,6 @@
 package tech.stacka.bizmaster
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -48,12 +49,14 @@ class RegisterActivity : AppCompatActivity() {
 
                     prefEditor.putString("name", name)
                     prefEditor.putString("email", email)
-                    prefEditor.putString("phone number", phone)
+                    prefEditor.putString("phone", phone)
                     prefEditor.putString("place", place)
                     prefEditor.apply()
                 }
 
             }
+            val clickintent=Intent(this,MainActivity::class.java)
+            startActivity(clickintent)
 
         }
 

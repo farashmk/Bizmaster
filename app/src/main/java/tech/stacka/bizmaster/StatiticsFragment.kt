@@ -184,7 +184,7 @@ class StatiticsFragment : Fragment() {
             chart.animateY(1000, Easing.Linear)
             chart.viewPortHandler.setMaximumScaleX(1.5f)
             chart.xAxis.setDrawGridLines(false)
-            chart.xAxis.position = XAxis.XAxisPosition.TOP
+            chart.xAxis.position = XAxis.XAxisPosition.BOTTOM
             chart.xAxis.isGranularityEnabled = true
             chart.legend.isEnabled = false
             chart.fitScreen()
