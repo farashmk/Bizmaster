@@ -8,9 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.github.mikephil.charting.data.Entry
 import kotlinx.android.synthetic.main.add_income_expence_layout.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import tech.stacka.bizmaster.helper.SqliteHelper
+import tech.stacka.bizmaster.models.CustomAdapter
+import tech.stacka.bizmaster.models.Transactions
 
 /**
  * A simple [Fragment] subclass.
@@ -53,6 +60,44 @@ class HomeFragment : Fragment() {
             val clickintent = Intent(activity, AddIncomeActivity::class.java)
             startActivity(clickintent)
         }
+        recyclerview.layoutManager = LinearLayoutManager(activity, RecyclerView.VERTICAL, false)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        add_layout.visibility = View.GONE
+        val sqliteHelper = SqliteHelper(activity!!.application)
+        val data = sqliteHelper.getAllTransactions()
+
+        val transactionList = ArrayList<Transactions>()
+        var expense = 0
+        var income = 0
+        var balance=0
+        if (data.moveToFirst()) {
+
+            for (i in 0 until data.count) {
+                val amount = data.getInt(0)
+                val amountType = data.getInt(2) > 0
+                val date = data.getLong(1)
+                val note = data.getString(3)
+                if (amountType) {
+                    income += amount
+                } else
+                    expense += amount
+                balance=income-expense
+
+                val transactions = Transactions(amount, amountType, date, note)
+                transactionList.add(transactions)
+                data.moveToNext()
+                var adapter = CustomAdapter(transactionList)
+                recyclerview.adapter = adapter
+            }
+            tvexpense.text = expense.toString()
+            tvincome.text = income.toString()
+            tvBalance.text=balance.toString()
+        }
+
     }
 
 

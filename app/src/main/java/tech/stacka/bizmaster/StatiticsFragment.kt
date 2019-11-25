@@ -128,8 +128,9 @@ class StatiticsFragment : Fragment() {
                 val amount = data.getInt(0)
                 val amountType = data.getInt(1) > 0
                 val date = data.getLong(2)
+                val note=data.getString(3)
 
-                val transactions = Transactions(amount, amountType, date)
+                val transactions = Transactions(amount, amountType, date,note)
                 transactionList.add(transactions)
                 rows.moveToNext()
             }

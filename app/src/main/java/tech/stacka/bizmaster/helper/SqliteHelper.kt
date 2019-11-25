@@ -64,7 +64,7 @@ class SqliteHelper(private val context: Context) : SQLiteOpenHelper(
     }
 
     fun getAllTransactions(): Cursor {
-        val query = "SELECT amount,date,amountType FROM transactions"
+        val query = "SELECT amount,date,amountType,note FROM transactions"
         val db = this.readableDatabase
         return db.rawQuery(query, null)
     }
