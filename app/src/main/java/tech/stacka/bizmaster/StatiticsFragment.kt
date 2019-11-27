@@ -3,26 +3,23 @@ package tech.stacka.bizmaster
 
 import android.graphics.Color
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.animation.Easing
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
-import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.fragment_statitics.*
 import tech.stacka.bizmaster.helper.SqliteHelper
 import tech.stacka.bizmaster.models.Transactions
-import java.lang.Exception
+import tech.stacka.bizmaster.utils.MyXAxisValueFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
+import kotlin.collections.HashMap
 
 
 /**
@@ -126,57 +123,52 @@ class StatiticsFragment : Fragment() {
 
             for (i in 0 until data.count) {
                 val amount = data.getInt(0)
-                val amountType = data.getInt(1) > 0
-                val date = data.getLong(2)
-                val note=data.getString(3)
+                val date = data.getLong(1)
+                val amountType = data.getInt(2) > 0
+                val note = data.getString(3)
 
-                val transactions = Transactions(amount, amountType, date,note)
+                val transactions = Transactions(amount, amountType, date, note)
                 transactionList.add(transactions)
-                rows.moveToNext()
+                data.moveToNext()
             }
+        }
 
-            for (i in 0 until transactionList.size) {
-                try {
-                    val tran = transactionList[i]
-                    // Convert time stamp to Date String
-                    val sdf = SimpleDateFormat("dd/MM/yyyy")   //arrange the date in dd mm yy format
-                    val dateString = sdf.format(Date(tran.date))
+        val incomeMap=HashMap<String,Long>()
+        val expenseMap=HashMap<String,Long>()
 
-                    if (dateList.contains(dateString)) {
-                        dateList.add(dateString)
-                    }
-
-                    var totalExpense = tran.amount
-
-                    for (j in 1 until transactionList.size) {
-                        try {
-                            val nextItem = transactionList[j]
-                            if (isOnSameDay(
-                                    tran.date,
-                                    nextItem.date
-                                ) && (tran.amountType == nextItem.amountType)
-                            ) {
-                                totalExpense += nextItem.amount
-                                transactionList.remove(nextItem)
-                            }
-                        } catch (e: Exception) {
-
-                        }
-                    }
-                    if (tran.amountType)
-                        incomeEntryList.add(Entry(i.toFloat(), totalExpense.toFloat()))
-                    else
-                        expenseEntryList.add(Entry(i.toFloat(), totalExpense.toFloat()))
-
-
-                } catch (e: Exception) {
-
+            for (transaction in transactionList) {
+                Log.d("Transaction", transaction.toString())
+                val sdf = SimpleDateFormat("dd/MM/yyyy")
+                val sdfdate = sdf.format(Date(transaction.date * 1000))
+                if (incomeMap[sdfdate] == null) {
+                    incomeMap[sdfdate] = 0
+                }
+                if (expenseMap[sdfdate] == null) {
+                    expenseMap[sdfdate] = 0
+                }
+                if (transaction.amountType) {
+                    incomeMap[sdfdate] = incomeMap[sdfdate]!! + transaction.amount
+                } else {
+                    expenseMap[sdfdate] = expenseMap[sdfdate]!! + transaction.amount
                 }
 
             }
+            val dateIncome = ArrayList<String>()
+            val amountIncome = ArrayList<Long>()
+            val amountExpense = ArrayList<Long>()
+            for ((k, v) in incomeMap) {
+                dateIncome.add(k)
+                amountIncome.add(v)
+            }
+            for ((k, v) in expenseMap) {
+                amountExpense.add(v)
+            }
+        Log.d("Income", "$dateIncome=>$incomeMap=>$expenseMap")
 
+        for (i in 0 until (dateIncome.size)) {
+            incomeEntryList.add(Entry(i.toFloat(), amountIncome[i].toFloat()))
+            expenseEntryList.add(Entry(i.toFloat(), amountExpense[i].toFloat()))
         }
-
 
         if (expenseEntryList.isNotEmpty() || incomeEntryList.isNotEmpty()) {
 
@@ -205,37 +197,34 @@ class StatiticsFragment : Fragment() {
             rightAxix.setDrawAxisLine(false)
             rightAxix.setDrawLabels(false)
 
-            val expenseSet = LineDataSet(expenseEntryList, "Label")
+            val expenseSet = LineDataSet(expenseEntryList, "Expense")
             expenseSet.setDrawCircles(false)
             expenseSet.lineWidth = 2.5f
             expenseSet.setDrawFilled(true)
             expenseSet.setDrawValues(false)
-            expenseSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+            expenseSet.mode = LineDataSet.Mode.LINEAR
+            expenseSet.color = Color.RED
 
-            val incomeSet = LineDataSet(incomeEntryList, "Label")
+            val incomeSet = LineDataSet(incomeEntryList, "Income")
             incomeSet.setDrawCircles(false)
             incomeSet.lineWidth = 2.5f
             incomeSet.setDrawFilled(true)
             incomeSet.setDrawValues(false)
-            incomeSet.mode = LineDataSet.Mode.CUBIC_BEZIER
+            incomeSet.mode = LineDataSet.Mode.LINEAR
+            incomeSet.color = Color.GREEN
 
             val dataSets = ArrayList<ILineDataSet>()
             dataSets.add(expenseSet) // add the datasets
             dataSets.add(incomeSet)
 
             val lineData = LineData(dataSets)
+            val xAxis = chart.xAxis
+            xAxis.valueFormatter = MyXAxisValueFormatter(dateIncome)
+
             chart.data = lineData
             chart.invalidate()
         }
 
 
-    }
-
-    private fun isOnSameDay(date1: Long, date2: Long): Boolean {
-        val fmt = SimpleDateFormat("yyyyMMdd")
-        if (fmt.format(date1) == fmt.format(date2)) {
-            return true
-        }
-        return false
     }
 }
